@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apex Submission</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            margin: 0;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-top: 18px;
+            margin-bottom: 6px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 11px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 25px;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            background: #111827;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:disabled {
+            opacity: 0.6;
+        }
+
+        #message {
+            text-align: center;
+            margin-top: 18px;
+            font-weight: bold;
+        }
+
+        .note {
+            font-size: 13px;
+            color: #666;
+            margin-top: 6px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Apex Submission</h1>
+
+    <form id="submissionForm">
+
+        <label for="schoolName">School Name</label>
+        <input
+            type="text"
+            id="schoolName"
+            required
+        >
+
+        <label for="schoolCode">School Code</label>
+        <input
+            type="text"
+            id="schoolCode"
+            required
+        >
+
+        <label for="file">Submission File</label>
+        <input
+            type="file"
+            id="file"
+            accept=".pdf,.jpg,.jpeg,.png"
+            required
+        >
+
+        <div class="note">
+            Accepted: PDF, JPG, JPEG, PNG — Maximum 10 MB
+        </div>
+
+        <button type="submit" id="submitButton">
+            Submit
+        </button>
+
+    </form>
+
+    <div id="message"></div>
+
+</div>
+
+<script>
+
+const form = document.getElementById("submissionForm");
+const message = document.getElementById("message");
+const submitButton = document.getElementById("submitButton");
+
+form.addEventListener("submit", async function(event) {
+
+    event.preventDefault();
+
+    const schoolName =
+        document.getElementById("schoolName").value.trim();
+
+    const schoolCode =
+        document.getElementById("schoolCode").value.trim();
+
+    const fileInput =
+        document.getElementById("file");
+
+    const file = fileInput.files[0];
+
+    if (!file) {
+        message.textContent = "Please select a file.";
+        return;
+    }
+
+    const maxSize = 10 * 1024 * 1024;
+
+    if (file.size > maxSize) {
+        message.textContent =
+            "File is too large. Maximum size is 10 MB.";
+        return;
+    }
+
+    const allowedTypes = [
+        "application/pdf",
+        "image/jpeg",
+        "image/png"
+    ];
+
+    if (!allowedTypes.includes(file.type)) {
+        message.textContent =
+            "Only PDF, JPG, JPEG and PNG files are allowed.";
+        return;
+    }
+
+    message.textContent = "Submitting...";
+    submitButton.disabled = true;
+
+    try {
+
+        const reader = new FileReader();
+
+        reader.onload = async function() {
+
+            const base64Data =
+                reader.result.split(",")[1];
+
+            const data = {
+                schoolName: schoolName,
+                schoolCode: schoolCode,
+                fileName: file.name,
+                fileData: base64Data,
+                mimeType: file.type
+            };
+
+            const response = await fetch(
+                "https://script.google.com/macros/s/AKfycbwC3JSSpRjqXmabkOBJbxtU9W1SXEuY5caLV874wPKTROEV2fC-Z8W2H4l3R7C45AN_/exec",
+                {
+                    method: "POST",
+                    body: JSON.stringify(data)
+                }
+            );
+
+            const result = await response.json();
+
+            if (!result.success) {
+                throw new Error(result.message);
+            }
+
+            message.textContent =
+                "Submission successful!";
+
+            form.reset();
+
+            submitButton.disabled = false;
+        };
+
+        reader.readAsDataURL(file);
+
+    } catch (error) {
+
+        console.error(error);
+
+        message.textContent =
+            "Submission failed. Please try again.";
+
+        submitButton.disabled = false;
+    }
+
+});
+
+</script>
+
+</body>
+</html>
