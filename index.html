@@ -12,34 +12,26 @@
     box-sizing: border-box;
 }
 
-html {
-    scroll-behavior: smooth;
-}
-
 body {
     margin: 0;
     min-height: 100vh;
-    padding: 30px 15px;
+    padding: 25px 15px;
 
     font-family: Arial, Helvetica, sans-serif;
 
-    background:
-        radial-gradient(circle at 20% 20%, rgba(37,99,235,.18), transparent 30%),
-        radial-gradient(circle at 80% 80%, rgba(14,165,233,.14), transparent 30%),
-        #020617;
+    background: #020617;
 
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 
     overflow-x: hidden;
-
     position: relative;
 }
 
 
 /* =========================
-   ANIMATED TECH GRID
+   ANIMATED TECH BACKGROUND
    ========================= */
 
 body::before {
@@ -62,13 +54,14 @@ body::before {
 
     background-size: 50px 50px;
 
-    transform: perspective(500px) rotateX(60deg) scale(1.5);
+    transform: perspective(500px)
+               rotateX(60deg)
+               scale(1.5);
 
     animation: gridMove 12s linear infinite;
 }
 
 @keyframes gridMove {
-
     from {
         background-position: 0 0;
     }
@@ -76,12 +69,11 @@ body::before {
     to {
         background-position: 0 50px;
     }
-
 }
 
 
 /* =========================
-   MOVING GLOW
+   GLOW
    ========================= */
 
 .glow {
@@ -92,7 +84,7 @@ body::before {
 
     border-radius: 50%;
 
-    background: rgba(37,99,235,.12);
+    background: rgba(37,99,235,.13);
 
     filter: blur(100px);
 
@@ -105,19 +97,18 @@ body::before {
 
 @keyframes glowMove {
 
-    0% {
+    from {
         transform: translate(-300px,-150px);
     }
 
-    100% {
+    to {
         transform: translate(300px,150px);
     }
-
 }
 
 
 /* =========================
-   FLOATING PARTICLES
+   PARTICLES
    ========================= */
 
 .particles {
@@ -130,73 +121,58 @@ body::before {
 }
 
 .particles span {
-
     position: absolute;
 
     width: 4px;
     height: 4px;
 
-    background: #60a5fa;
-
     border-radius: 50%;
 
-    box-shadow:
-        0 0 10px #60a5fa;
+    background: #60a5fa;
+
+    box-shadow: 0 0 10px #60a5fa;
 
     opacity: .6;
 
-    animation: floatParticle 8s linear infinite;
+    animation: particleFloat 8s linear infinite;
 }
 
 .particles span:nth-child(1) {
     left: 8%;
     top: 90%;
-    animation-delay: 0s;
 }
 
 .particles span:nth-child(2) {
-    left: 18%;
-    top: 70%;
+    left: 20%;
+    top: 75%;
     animation-delay: 2s;
 }
 
 .particles span:nth-child(3) {
-    left: 30%;
-    top: 85%;
+    left: 35%;
+    top: 90%;
     animation-delay: 4s;
 }
 
 .particles span:nth-child(4) {
-    left: 43%;
-    top: 75%;
+    left: 50%;
+    top: 70%;
     animation-delay: 1s;
 }
 
 .particles span:nth-child(5) {
-    left: 55%;
-    top: 90%;
+    left: 65%;
+    top: 85%;
     animation-delay: 3s;
 }
 
 .particles span:nth-child(6) {
-    left: 67%;
-    top: 65%;
+    left: 80%;
+    top: 70%;
     animation-delay: 5s;
 }
 
-.particles span:nth-child(7) {
-    left: 78%;
-    top: 80%;
-    animation-delay: 2s;
-}
-
-.particles span:nth-child(8) {
-    left: 90%;
-    top: 50%;
-    animation-delay: 4s;
-}
-
-@keyframes floatParticle {
+@keyframes particleFloat {
 
     0% {
         transform: translateY(80px);
@@ -215,7 +191,6 @@ body::before {
         transform: translateY(-600px);
         opacity: 0;
     }
-
 }
 
 
@@ -226,34 +201,31 @@ body::before {
 .container {
 
     width: 100%;
-    max-width: 560px;
+    max-width: 600px;
+
+    padding: 35px;
 
     background: rgba(255,255,255,.97);
 
-    border-radius: 24px;
-
-    padding: 38px;
+    border-radius: 22px;
 
     box-shadow:
-        0 30px 80px rgba(0,0,0,.5),
-        0 0 0 1px rgba(255,255,255,.1);
+        0 30px 80px rgba(0,0,0,.5);
 
-    animation: cardIn .7s ease;
-
+    animation: cardIn .6s ease;
 }
 
 @keyframes cardIn {
 
     from {
         opacity: 0;
-        transform: translateY(30px) scale(.98);
+        transform: translateY(25px);
     }
 
     to {
         opacity: 1;
-        transform: translateY(0) scale(1);
+        transform: translateY(0);
     }
-
 }
 
 
@@ -262,31 +234,7 @@ body::before {
    ========================= */
 
 .brand {
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    gap: 8px;
-
-    margin-bottom: 12px;
-}
-
-.brand-dot {
-
-    width: 9px;
-    height: 9px;
-
-    border-radius: 50%;
-
-    background: #2563eb;
-
-    box-shadow:
-        0 0 12px rgba(37,99,235,.7);
-
-}
-
-.brand-name {
+    text-align: center;
 
     font-size: 13px;
 
@@ -296,127 +244,174 @@ body::before {
 
     color: #2563eb;
 
+    margin-bottom: 8px;
 }
 
-
-/* =========================
-   HEADING
-   ========================= */
-
 h1 {
-
     margin: 0;
 
     text-align: center;
 
     color: #101828;
 
-    font-size: 31px;
-
-    letter-spacing: -.5px;
-
+    font-size: 30px;
 }
 
 .subtitle {
-
-    margin: 10px auto 28px;
-
     text-align: center;
-
-    max-width: 400px;
 
     color: #667085;
 
     font-size: 14px;
 
-    line-height: 1.5;
-
+    margin: 8px 0 28px;
 }
 
 
 /* =========================
-   STEPS
+   STEP TABS
    ========================= */
 
 .steps {
-
     display: flex;
-
-    justify-content: center;
 
     align-items: center;
 
-    margin-bottom: 30px;
+    justify-content: space-between;
 
+    margin-bottom: 30px;
 }
 
 .step {
-
     display: flex;
 
     align-items: center;
 
-    gap: 7px;
-
-    font-size: 11px;
+    gap: 8px;
 
     color: #98a2b3;
 
+    font-size: 11px;
+
     font-weight: bold;
 
-}
-
-.step.active {
-
-    color: #2563eb;
-
+    cursor: default;
 }
 
 .step-number {
-
-    width: 25px;
-    height: 25px;
+    width: 30px;
+    height: 30px;
 
     border-radius: 50%;
 
     display: flex;
 
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 
-    background: #eef4ff;
+    background: #f2f4f7;
 
-    color: #2563eb;
+    color: #98a2b3;
 
-    font-size: 11px;
-
+    transition: .3s;
 }
 
-.line {
+.step.active {
+    color: #2563eb;
+}
 
-    width: 35px;
+.step.active .step-number {
+    background: #2563eb;
 
-    height: 1px;
+    color: white;
 
-    background: #d0d5dd;
+    box-shadow:
+        0 0 0 4px rgba(37,99,235,.12);
+}
 
-    margin: 0 8px;
+.step.completed .step-number {
+    background: #dcfce7;
 
+    color: #16a34a;
+}
+
+.step-line {
+    flex: 1;
+
+    height: 2px;
+
+    background: #eaecf0;
+
+    margin: 0 10px;
+
+    transition: .3s;
+}
+
+.step-line.completed {
+    background: #2563eb;
 }
 
 
 /* =========================
-   FORM
+   TABS
+   ========================= */
+
+.tab {
+    display: none;
+}
+
+.tab.active {
+    display: block;
+
+    animation: tabIn .35s ease;
+}
+
+@keyframes tabIn {
+
+    from {
+        opacity: 0;
+        transform: translateX(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+/* =========================
+   TAB TITLE
+   ========================= */
+
+.tab-title {
+    font-size: 20px;
+
+    font-weight: 800;
+
+    color: #101828;
+
+    margin-bottom: 5px;
+}
+
+.tab-description {
+    font-size: 13px;
+
+    color: #667085;
+
+    margin-bottom: 22px;
+}
+
+
+/* =========================
+   INPUTS
    ========================= */
 
 .field {
-
-    margin-bottom: 21px;
-
+    margin-bottom: 22px;
 }
 
 label {
-
     display: block;
 
     margin-bottom: 8px;
@@ -426,19 +421,11 @@ label {
     font-size: 14px;
 
     font-weight: 700;
-
 }
 
 .required {
-
     color: #2563eb;
-
 }
-
-
-/* =========================
-   INPUT
-   ========================= */
 
 input[type="text"] {
 
@@ -450,14 +437,11 @@ input[type="text"] {
 
     border-radius: 10px;
 
-    background: #fff;
-
     font-size: 15px;
 
     outline: none;
 
     transition: .2s;
-
 }
 
 input[type="text"]:focus {
@@ -466,12 +450,11 @@ input[type="text"]:focus {
 
     box-shadow:
         0 0 0 3px rgba(37,99,235,.12);
-
 }
 
 
 /* =========================
-   UPLOAD AREA
+   UPLOAD
    ========================= */
 
 .upload-area {
@@ -480,7 +463,7 @@ input[type="text"]:focus {
 
     border-radius: 14px;
 
-    padding: 25px 18px;
+    padding: 30px 15px;
 
     text-align: center;
 
@@ -489,50 +472,36 @@ input[type="text"]:focus {
     background: #f8fafc;
 
     transition: .25s;
-
 }
 
-.upload-area:hover {
-
-    border-color: #2563eb;
-
-    background: #f4f8ff;
-
-    transform: translateY(-1px);
-
-}
-
+.upload-area:hover,
 .upload-area.dragging {
 
     border-color: #2563eb;
 
     background: #eef4ff;
 
-    transform: scale(1.01);
-
 }
 
 .upload-icon {
 
-    width: 48px;
-    height: 48px;
+    width: 50px;
+    height: 50px;
 
-    margin: auto auto 12px;
+    margin: 0 auto 13px;
 
-    border-radius: 12px;
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 13px;
 
     background: #eaf1ff;
 
     color: #2563eb;
 
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    font-size: 22px;
-
+    font-size: 24px;
 }
 
 .upload-title {
@@ -542,32 +511,24 @@ input[type="text"]:focus {
     font-size: 14px;
 
     font-weight: bold;
-
 }
 
 .upload-title span {
 
     color: #2563eb;
-
 }
 
 .upload-subtitle {
-
-    margin-top: 6px;
 
     color: #98a2b3;
 
     font-size: 12px;
 
+    margin-top: 7px;
 }
 
-
-/* Hide actual file input */
-
 #file {
-
     display: none;
-
 }
 
 
@@ -583,24 +544,15 @@ input[type="text"]:focus {
 
     justify-content: space-between;
 
-    gap: 12px;
-
     margin-top: 12px;
 
-    padding: 12px;
+    padding: 13px;
+
+    border-radius: 10px;
 
     background: #f0fdf4;
 
     border: 1px solid #bbf7d0;
-
-    border-radius: 10px;
-
-}
-
-.file-info {
-
-    min-width: 0;
-
 }
 
 .file-name {
@@ -616,7 +568,6 @@ input[type="text"]:focus {
     text-overflow: ellipsis;
 
     white-space: nowrap;
-
 }
 
 .file-size {
@@ -625,8 +576,7 @@ input[type="text"]:focus {
 
     font-size: 11px;
 
-    margin-top: 3px;
-
+    margin-top: 4px;
 }
 
 .remove-file {
@@ -639,81 +589,156 @@ input[type="text"]:focus {
 
     cursor: pointer;
 
-    font-size: 13px;
-
-    padding: 5px;
-
+    font-size: 12px;
 }
 
 
 /* =========================
-   NOTE
+   OVERVIEW
    ========================= */
 
-.note {
+.overview {
 
-    margin-top: 8px;
+    border: 1px solid #eaecf0;
 
-    color: #667085;
+    border-radius: 14px;
 
-    font-size: 11px;
+    overflow: hidden;
 
-    line-height: 1.5;
-
+    margin-bottom: 20px;
 }
 
+.overview-row {
 
-/* =========================
-   BUTTON
-   ========================= */
+    display: flex;
 
-button[type="submit"] {
+    justify-content: space-between;
 
-    width: 100%;
-
-    margin-top: 8px;
+    gap: 20px;
 
     padding: 15px;
 
+    border-bottom: 1px solid #eaecf0;
+}
+
+.overview-row:last-child {
+    border-bottom: none;
+}
+
+.overview-label {
+
+    color: #667085;
+
+    font-size: 12px;
+
+    font-weight: 600;
+}
+
+.overview-value {
+
+    color: #101828;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    text-align: right;
+
+    word-break: break-word;
+}
+
+.confirmation {
+
+    padding: 13px;
+
+    background: #eff6ff;
+
+    border: 1px solid #bfdbfe;
+
+    border-radius: 10px;
+
+    color: #1e40af;
+
+    font-size: 12px;
+
+    line-height: 1.5;
+
+    margin-bottom: 20px;
+}
+
+
+/* =========================
+   BUTTONS
+   ========================= */
+
+.navigation {
+
+    display: flex;
+
+    gap: 10px;
+
+    margin-top: 25px;
+}
+
+button {
+
+    font-family: inherit;
+}
+
+.btn {
+
     border: none;
 
-    border-radius: 11px;
+    border-radius: 10px;
 
-    background: #111827;
+    padding: 14px;
 
-    color: white;
-
-    font-size: 15px;
+    font-size: 14px;
 
     font-weight: 700;
 
     cursor: pointer;
 
-    transition: .25s;
-
+    transition: .2s;
 }
 
-button[type="submit"]:hover {
+.btn-primary {
+
+    flex: 1;
+
+    background: #111827;
+
+    color: white;
+}
+
+.btn-primary:hover {
 
     background: #2563eb;
 
-    transform: translateY(-2px);
-
-    box-shadow:
-        0 10px 25px rgba(37,99,235,.25);
-
+    transform: translateY(-1px);
 }
 
-button[type="submit"]:disabled {
+.btn-secondary {
 
-    opacity: .65;
+    width: 110px;
+
+    background: #f2f4f7;
+
+    color: #344054;
+}
+
+.btn-secondary:hover {
+
+    background: #e4e7ec;
+}
+
+.btn:disabled {
+
+    opacity: .6;
 
     cursor: not-allowed;
 
     transform: none;
-
-    box-shadow: none;
-
 }
 
 
@@ -739,15 +764,12 @@ button[type="submit"]:disabled {
     vertical-align: middle;
 
     margin-right: 7px;
-
 }
 
 @keyframes spin {
-
     to {
         transform: rotate(360deg);
     }
-
 }
 
 
@@ -759,12 +781,11 @@ button[type="submit"]:disabled {
 
     text-align: center;
 
-    margin-top: 18px;
+    margin-top: 16px;
 
-    font-size: 14px;
+    font-size: 13px;
 
     font-weight: bold;
-
 }
 
 
@@ -778,16 +799,15 @@ button[type="submit"]:disabled {
 
     text-align: center;
 
-    padding: 15px 0 5px;
-
+    padding: 25px 5px 10px;
 }
 
 .success-icon {
 
-    width: 64px;
-    height: 64px;
+    width: 70px;
+    height: 70px;
 
-    margin: 0 auto 15px;
+    margin: auto auto 15px;
 
     border-radius: 50%;
 
@@ -800,17 +820,15 @@ button[type="submit"]:disabled {
     align-items: center;
     justify-content: center;
 
-    font-size: 30px;
+    font-size: 32px;
 
     animation: successPop .5s ease;
-
 }
 
 @keyframes successPop {
 
     0% {
         transform: scale(.5);
-        opacity: 0;
     }
 
     70% {
@@ -819,29 +837,27 @@ button[type="submit"]:disabled {
 
     100% {
         transform: scale(1);
-        opacity: 1;
     }
-
 }
 
 .success-title {
 
+    font-size: 21px;
+
     color: #166534;
 
-    font-size: 20px;
-
     font-weight: 800;
-
 }
 
 .success-text {
+
+    margin-top: 8px;
 
     color: #667085;
 
     font-size: 13px;
 
-    margin-top: 7px;
-
+    line-height: 1.5;
 }
 
 
@@ -851,20 +867,17 @@ button[type="submit"]:disabled {
 
 .footer {
 
+    text-align: center;
+
     margin-top: 25px;
 
     padding-top: 17px;
 
     border-top: 1px solid #eaecf0;
 
-    text-align: center;
-
     color: #98a2b3;
 
     font-size: 11px;
-
-    line-height: 1.5;
-
 }
 
 
@@ -875,66 +888,43 @@ button[type="submit"]:disabled {
 @media (max-width: 600px) {
 
     body {
-
         padding: 15px 10px;
-
-        align-items: center;
-
     }
 
     .container {
-
         padding: 27px 19px;
-
-        border-radius: 19px;
-
     }
 
     h1 {
-
         font-size: 27px;
-
-    }
-
-    .subtitle {
-
-        font-size: 13px;
-
-    }
-
-    .line {
-
-        width: 22px;
-
-        margin: 0 5px;
-
     }
 
     .step {
-
         font-size: 9px;
-
     }
 
-}
-
-
-/* Reduced motion accessibility */
-
-@media (prefers-reduced-motion: reduce) {
-
-    *,
-    *::before,
-    *::after {
-
-        animation-duration: .01ms !important;
-
-        animation-iteration-count: 1 !important;
-
-        scroll-behavior: auto !important;
-
+    .step-number {
+        width: 27px;
+        height: 27px;
     }
 
+    .step-line {
+        margin: 0 5px;
+    }
+
+    .overview-row {
+        flex-direction: column;
+
+        gap: 5px;
+    }
+
+    .overview-value {
+        text-align: left;
+    }
+
+    .btn-secondary {
+        width: 90px;
+    }
 }
 
 </style>
@@ -955,8 +945,6 @@ button[type="submit"]:disabled {
     <span></span>
     <span></span>
     <span></span>
-    <span></span>
-    <span></span>
 
 </div>
 
@@ -964,14 +952,10 @@ button[type="submit"]:disabled {
 <div class="container">
 
 
+    <!-- BRAND -->
+
     <div class="brand">
-
-        <div class="brand-dot"></div>
-
-        <div class="brand-name">
-            APEX 2026
-        </div>
-
+        APEX 2026
     </div>
 
 
@@ -981,13 +965,18 @@ button[type="submit"]:disabled {
 
 
     <div class="subtitle">
-        Submit your project for evaluation and showcase your innovation.
+        Complete the steps below to submit your project.
     </div>
 
 
+    <!-- =========================
+         STEP INDICATOR
+         ========================= -->
+
     <div class="steps">
 
-        <div class="step active">
+
+        <div class="step active" id="step1">
 
             <div class="step-number">
                 1
@@ -998,10 +987,10 @@ button[type="submit"]:disabled {
         </div>
 
 
-        <div class="line"></div>
+        <div class="step-line" id="line1"></div>
 
 
-        <div class="step active">
+        <div class="step" id="step2">
 
             <div class="step-number">
                 2
@@ -1012,65 +1001,113 @@ button[type="submit"]:disabled {
         </div>
 
 
-        <div class="line"></div>
+        <div class="step-line" id="line2"></div>
 
 
-        <div class="step">
+        <div class="step" id="step3">
 
             <div class="step-number">
                 3
             </div>
 
-            Submit
+            Overview
 
         </div>
 
     </div>
 
 
+    <!-- =========================
+         FORM
+         ========================= -->
+
     <form id="submissionForm">
 
 
-        <div class="field">
+        <!-- TAB 1 -->
 
-            <label for="schoolName">
-                Institution / School Name
-                <span class="required">*</span>
-            </label>
+        <div class="tab active" id="tab1">
 
-            <input
-                type="text"
-                id="schoolName"
-                placeholder="Enter your institution name"
-                required
-            >
+
+            <div class="tab-title">
+                Institution Details
+            </div>
+
+
+            <div class="tab-description">
+                Enter the details associated with your submission.
+            </div>
+
+
+            <div class="field">
+
+                <label for="schoolName">
+
+                    Institution / School Name
+                    <span class="required">*</span>
+
+                </label>
+
+
+                <input
+                    type="text"
+                    id="schoolName"
+                    placeholder="Enter your institution name"
+                    required
+                >
+
+            </div>
+
+
+            <div class="field">
+
+                <label for="schoolCode">
+
+                    Institution Code
+                    <span class="required">*</span>
+
+                </label>
+
+
+                <input
+                    type="text"
+                    id="schoolCode"
+                    placeholder="Enter your institution code"
+                    required
+                >
+
+            </div>
+
+
+            <div class="navigation">
+
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    id="next1"
+                >
+                    Continue to Upload →
+                </button>
+
+            </div>
+
 
         </div>
 
 
-        <div class="field">
+        <!-- TAB 2 -->
 
-            <label for="schoolCode">
-                Institution Code
-                <span class="required">*</span>
-            </label>
-
-            <input
-                type="text"
-                id="schoolCode"
-                placeholder="Enter your institution code"
-                required
-            >
-
-        </div>
+        <div class="tab" id="tab2">
 
 
-        <div class="field">
+            <div class="tab-title">
+                Upload Project
+            </div>
 
-            <label>
-                Project File
-                <span class="required">*</span>
-            </label>
+
+            <div class="tab-description">
+                Upload the file you want to submit for evaluation.
+            </div>
 
 
             <div
@@ -1093,7 +1130,7 @@ button[type="submit"]:disabled {
 
                 <div class="upload-subtitle">
 
-                    Upload your project document
+                    PDF, JPG, JPEG or PNG
 
                 </div>
 
@@ -1102,7 +1139,6 @@ button[type="submit"]:disabled {
                     type="file"
                     id="file"
                     accept=".pdf,.jpg,.jpeg,.png"
-                    required
                 >
 
             </div>
@@ -1113,12 +1149,13 @@ button[type="submit"]:disabled {
                 id="filePreview"
             >
 
-                <div class="file-info">
+                <div>
 
                     <div
                         class="file-name"
                         id="fileName"
                     ></div>
+
 
                     <div
                         class="file-size"
@@ -1141,29 +1178,149 @@ button[type="submit"]:disabled {
 
             <div class="note">
 
-                Supported formats: PDF, JPG, JPEG, PNG
-                • Maximum size: 10 MB
+                Maximum file size: 10 MB
 
             </div>
+
+
+            <div class="navigation">
+
+
+                <button
+                    type="button"
+                    class="btn btn-secondary"
+                    id="back2"
+                >
+                    ← Back
+                </button>
+
+
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    id="next2"
+                >
+                    Review Submission →
+                </button>
+
+
+            </div>
+
 
         </div>
 
 
-        <button
-            type="submit"
-            id="submitButton"
-        >
-            Submit Project →
-        </button>
+        <!-- TAB 3 -->
+
+        <div class="tab" id="tab3">
+
+
+            <div class="tab-title">
+                Review & Submit
+            </div>
+
+
+            <div class="tab-description">
+                Check your information carefully before submitting.
+            </div>
+
+
+            <div class="overview">
+
+
+                <div class="overview-row">
+
+                    <div class="overview-label">
+                        Institution
+                    </div>
+
+                    <div
+                        class="overview-value"
+                        id="reviewSchool"
+                    >
+                    </div>
+
+                </div>
+
+
+                <div class="overview-row">
+
+                    <div class="overview-label">
+                        Institution Code
+                    </div>
+
+                    <div
+                        class="overview-value"
+                        id="reviewCode"
+                    >
+                    </div>
+
+                </div>
+
+
+                <div class="overview-row">
+
+                    <div class="overview-label">
+                        Project File
+                    </div>
+
+                    <div
+                        class="overview-value"
+                        id="reviewFile"
+                    >
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="confirmation">
+
+                ✓ Your submission is ready.
+                Please verify the information above.
+                Once submitted, the project will be sent for evaluation.
+
+            </div>
+
+
+            <div class="navigation">
+
+
+                <button
+                    type="button"
+                    class="btn btn-secondary"
+                    id="back3"
+                >
+                    ← Back
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="btn btn-primary"
+                    id="submitButton"
+                >
+                    Submit Project ✓
+                </button>
+
+
+            </div>
+
+
+        </div>
 
 
     </form>
 
 
-    <div
-        id="message"
-    ></div>
+    <!-- MESSAGE -->
 
+    <div id="message"></div>
+
+
+    <!-- SUCCESS -->
 
     <div
         class="success-box"
@@ -1174,12 +1331,17 @@ button[type="submit"]:disabled {
             ✓
         </div>
 
+
         <div class="success-title">
             Submission Received
         </div>
 
+
         <div class="success-text">
-            Your project has been successfully submitted for evaluation.
+
+            Your project has been successfully submitted
+            for evaluation.
+
         </div>
 
     </div>
@@ -1187,8 +1349,7 @@ button[type="submit"]:disabled {
 
     <div class="footer">
 
-        APEX 2026 • Project Submission Portal<br>
-        Please verify your details and file before submitting.
+        APEX 2026 • Project Submission Portal
 
     </div>
 
@@ -1230,34 +1391,278 @@ const message =
 const submitButton =
     document.getElementById("submitButton");
 
-const successBox =
-    document.getElementById("successBox");
-
 
 /* =========================
-   FILE SIZE FORMAT
+   TABS
    ========================= */
 
-function formatFileSize(bytes) {
+let currentTab = 1;
 
-    if (bytes < 1024) {
-        return bytes + " B";
-    }
 
-    if (bytes < 1024 * 1024) {
-        return (bytes / 1024).toFixed(1) + " KB";
-    }
+function showTab(tabNumber) {
 
-    return (bytes / (1024 * 1024)).toFixed(2) + " MB";
+
+    document
+        .querySelectorAll(".tab")
+        .forEach(tab => {
+
+            tab.classList.remove("active");
+
+        });
+
+
+    document
+        .getElementById("tab" + tabNumber)
+        .classList.add("active");
+
+
+    currentTab =
+        tabNumber;
+
+
+    updateSteps();
 
 }
 
 
 /* =========================
-   FILE DISPLAY
+   STEP INDICATOR
    ========================= */
 
-function showFile(file) {
+function updateSteps() {
+
+
+    for (let i = 1; i <= 3; i++) {
+
+
+        const step =
+            document.getElementById("step" + i);
+
+
+        step.classList.remove(
+            "active",
+            "completed"
+        );
+
+
+        if (i < currentTab) {
+
+            step.classList.add(
+                "completed"
+            );
+
+        }
+
+
+        if (i === currentTab) {
+
+            step.classList.add(
+                "active"
+            );
+
+        }
+
+    }
+
+
+    document
+        .getElementById("line1")
+        .classList.toggle(
+            "completed",
+            currentTab >= 2
+        );
+
+
+    document
+        .getElementById("line2")
+        .classList.toggle(
+            "completed",
+            currentTab >= 3
+        );
+
+}
+
+
+/* =========================
+   TAB 1 → TAB 2
+   ========================= */
+
+document
+    .getElementById("next1")
+    .addEventListener(
+        "click",
+        function() {
+
+
+            const schoolName =
+                document
+                .getElementById("schoolName")
+                .value
+                .trim();
+
+
+            const schoolCode =
+                document
+                .getElementById("schoolCode")
+                .value
+                .trim();
+
+
+            if (!schoolName) {
+
+                message.textContent =
+                    "Please enter your institution name.";
+
+                message.style.color =
+                    "#dc2626";
+
+                return;
+
+            }
+
+
+            if (!schoolCode) {
+
+                message.textContent =
+                    "Please enter your institution code.";
+
+                message.style.color =
+                    "#dc2626";
+
+                return;
+
+            }
+
+
+            message.textContent = "";
+
+
+            showTab(2);
+
+        }
+    );
+
+
+/* =========================
+   TAB 2 → TAB 3
+   ========================= */
+
+document
+    .getElementById("next2")
+    .addEventListener(
+        "click",
+        function() {
+
+
+            if (!fileInput.files[0]) {
+
+                message.textContent =
+                    "Please upload your project file.";
+
+                message.style.color =
+                    "#dc2626";
+
+                return;
+
+            }
+
+
+            message.textContent = "";
+
+
+            document
+                .getElementById("reviewSchool")
+                .textContent =
+                document
+                .getElementById("schoolName")
+                .value;
+
+
+            document
+                .getElementById("reviewCode")
+                .textContent =
+                document
+                .getElementById("schoolCode")
+                .value;
+
+
+            document
+                .getElementById("reviewFile")
+                .textContent =
+                fileInput.files[0].name;
+
+
+            showTab(3);
+
+        }
+    );
+
+
+/* =========================
+   BACK BUTTONS
+   ========================= */
+
+document
+    .getElementById("back2")
+    .addEventListener(
+        "click",
+        function() {
+
+            showTab(1);
+
+        }
+    );
+
+
+document
+    .getElementById("back3")
+    .addEventListener(
+        "click",
+        function() {
+
+            showTab(2);
+
+        }
+    );
+
+
+/* =========================
+   FILE SIZE
+   ========================= */
+
+function formatFileSize(bytes) {
+
+
+    if (bytes < 1024) {
+
+        return bytes + " B";
+
+    }
+
+
+    if (bytes < 1024 * 1024) {
+
+        return (
+            bytes / 1024
+        ).toFixed(1) + " KB";
+
+    }
+
+
+    return (
+        bytes /
+        (1024 * 1024)
+    ).toFixed(2) + " MB";
+
+}
+
+
+/* =========================
+   FILE VALIDATION
+   ========================= */
+
+function handleFile(file) {
+
 
     if (!file) {
         return;
@@ -1277,16 +1682,22 @@ function showFile(file) {
         10 * 1024 * 1024;
 
 
-    if (!allowedTypes.includes(file.type)) {
+    if (
+        !allowedTypes.includes(
+            file.type
+        )
+    ) {
 
         message.textContent =
             "Only PDF, JPG, JPEG and PNG files are allowed.";
 
-        message.style.color = "#dc2626";
+        message.style.color =
+            "#dc2626";
 
         fileInput.value = "";
 
-        filePreview.style.display = "none";
+        filePreview.style.display =
+            "none";
 
         return;
 
@@ -1298,11 +1709,13 @@ function showFile(file) {
         message.textContent =
             "File is too large. Maximum size is 10 MB.";
 
-        message.style.color = "#dc2626";
+        message.style.color =
+            "#dc2626";
 
         fileInput.value = "";
 
-        filePreview.style.display = "none";
+        filePreview.style.display =
+            "none";
 
         return;
 
@@ -1334,14 +1747,16 @@ fileInput.addEventListener(
     "change",
     function() {
 
-        showFile(this.files[0]);
+        handleFile(
+            this.files[0]
+        );
 
     }
 );
 
 
 /* =========================
-   CLICK UPLOAD
+   UPLOAD CLICK
    ========================= */
 
 uploadArea.addEventListener(
@@ -1364,7 +1779,9 @@ uploadArea.addEventListener(
 
         event.preventDefault();
 
-        uploadArea.classList.add("dragging");
+        uploadArea.classList.add(
+            "dragging"
+        );
 
     }
 );
@@ -1374,7 +1791,9 @@ uploadArea.addEventListener(
     "dragleave",
     function() {
 
-        uploadArea.classList.remove("dragging");
+        uploadArea.classList.remove(
+            "dragging"
+        );
 
     }
 );
@@ -1386,7 +1805,9 @@ uploadArea.addEventListener(
 
         event.preventDefault();
 
-        uploadArea.classList.remove("dragging");
+        uploadArea.classList.remove(
+            "dragging"
+        );
 
 
         const files =
@@ -1398,7 +1819,9 @@ uploadArea.addEventListener(
             fileInput.files =
                 files;
 
-            showFile(files[0]);
+            handleFile(
+                files[0]
+            );
 
         }
 
@@ -1428,7 +1851,7 @@ removeFile.addEventListener(
 
 
 /* =========================
-   FORM SUBMISSION
+   FINAL SUBMISSION
    ========================= */
 
 form.addEventListener(
@@ -1456,7 +1879,18 @@ form.addEventListener(
             fileInput.files[0];
 
 
+        if (!schoolName || !schoolCode) {
+
+            showTab(1);
+
+            return;
+
+        }
+
+
         if (!file) {
+
+            showTab(2);
 
             message.textContent =
                 "Please upload your project file.";
@@ -1495,10 +1929,14 @@ form.addEventListener(
         }
 
 
-        if (!allowedTypes.includes(file.type)) {
+        if (
+            !allowedTypes.includes(
+                file.type
+            )
+        ) {
 
             message.textContent =
-                "Only PDF, JPG, JPEG and PNG files are allowed.";
+                "Invalid file format.";
 
             message.style.color =
                 "#dc2626";
@@ -1516,7 +1954,7 @@ form.addEventListener(
 
 
         submitButton.innerHTML =
-            '<span class="loader"></span> Uploading...';
+            '<span class="loader"></span> Submitting...';
 
 
         try {
@@ -1528,11 +1966,13 @@ form.addEventListener(
 
             reader.onload = async function() {
 
+
                 try {
 
 
                     const base64Data =
-                        reader.result.split(",")[1];
+                        reader.result
+                        .split(",")[1];
 
 
                     const data = {
@@ -1556,8 +1996,8 @@ form.addEventListener(
 
 
                     /*
-                     * EXISTING GOOGLE APPS SCRIPT
-                     * SUBMISSION ENDPOINT
+                     * YOUR EXISTING
+                     * GOOGLE APPS SCRIPT
                      */
 
                     const response =
@@ -1596,17 +2036,18 @@ form.addEventListener(
                         "none";
 
 
+                    message.textContent =
+                        "";
+
+
                     successBox.style.display =
                         "block";
-
-
-                    submitButton.disabled =
-                        false;
 
 
                 }
 
                 catch (error) {
+
 
                     console.error(error);
 
@@ -1623,7 +2064,7 @@ form.addEventListener(
 
 
                     submitButton.innerHTML =
-                        "Submit Project →";
+                        "Submit Project ✓";
 
                 }
 
@@ -1637,11 +2078,13 @@ form.addEventListener(
 
         catch (error) {
 
+
             console.error(error);
 
 
             message.textContent =
                 "Submission failed. Please try again.";
+
 
             message.style.color =
                 "#dc2626";
@@ -1652,13 +2095,19 @@ form.addEventListener(
 
 
             submitButton.innerHTML =
-                "Submit Project →";
+                "Submit Project ✓";
 
         }
 
     }
-
 );
+
+
+/* =========================
+   INITIAL STATE
+   ========================= */
+
+updateSteps();
 
 </script>
 
